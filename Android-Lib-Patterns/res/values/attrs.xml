@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Springboard">
+        <!-- Defines how many columns to show. -->
+        <attr
+            name="numColumns"
+            format="reference|integer" />
+        <!-- Defines how many rows to show. -->
+        <attr
+            name="numRows"
+            format="reference|integer" />
+        <!-- Defines a TransitionDrawable as the page indicator. -->
+        <attr
+            name="pageIndicatorSrc"
+            format="reference" />
+        <!-- Defines the padding for the page indicator -->
+        <attr
+            name="pageIndicatorPadding"
+            format="reference|dimension" />
+        <!-- Defines the height of the page indicator. -->
+        <attr
+            name="pageIndicatorHeight"
+            format="reference|dimension" />
+    </declare-styleable>
+</resources>

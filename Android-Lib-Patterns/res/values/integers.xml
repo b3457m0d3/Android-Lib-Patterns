@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default number of columns. -->
+    <integer name="springboard_num_columns">3</integer>
+    <!-- Default number of rows. -->
+    <integer name="springboard_num_rows">4</integer>
+    <!-- State transition time for page indicators -->
+    <integer name="springboard_page_indicator_transition">500</integer>
+</resources>
