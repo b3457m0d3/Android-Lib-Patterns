@@ -8,11 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-final class SpringboardAdapter extends BaseAdapter {
+final class DashboardAdapter extends BaseAdapter {
     private final Context context;
     private final int[]   icons = new int[14];
 
-    public SpringboardAdapter(final Context context) {
+    public DashboardAdapter(final Context context) {
         this.context = context;
 
         this.icons[0]  = R.drawable.ic_1;
@@ -52,7 +52,7 @@ final class SpringboardAdapter extends BaseAdapter {
         final ViewHolder holder;
 
         if (convertView == null) {
-            view   = LayoutInflater.from(this.context).inflate(R.layout.springboard_item, null);
+            view   = LayoutInflater.from(this.context).inflate(R.layout.dashboard_item, null);
             holder = new ViewHolder((ImageView)view.findViewById(R.id.icon), (TextView)view.findViewById(R.id.label));
 
             view.setTag(holder);

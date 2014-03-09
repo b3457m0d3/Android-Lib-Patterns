@@ -5,6 +5,10 @@ This is an Android library intended to provide developers with a rich set of UI 
 
 **Navigation**
 
-* Springboard (aka Launchpad)
+* Dashboard
+
+**Lists**
+
+* Never-ending ListView
 
 *(More to come)*

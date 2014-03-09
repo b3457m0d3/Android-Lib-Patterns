@@ -1,11 +1,11 @@
-<android.lib.patterns.nav.Springboard
+<android.lib.patterns.nav.Dashboard
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:patterns="http://schemas.android.com/apk/res-auto"
-    tools:context=".SpringboardActivity"
-    android:id="@+id/springboard"
+    tools:context=".DashboardActivity"
+    android:id="@+id/dashboard"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     patterns:numColumns="3"
     patterns:numRows="4"
-    patterns:pageIndicatorSrc="@drawable/springboard_page_indicator" />
+    patterns:pageIndicatorSrc="@drawable/dashboard_page_indicator" />

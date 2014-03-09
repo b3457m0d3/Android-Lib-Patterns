@@ -1,16 +1,16 @@
 package android.lib.patterns.demo;
 
 import android.app.Activity;
-import android.lib.patterns.nav.Springboard;
+import android.lib.patterns.nav.Dashboard;
 import android.os.Bundle;
 
-public class SpringboardActivity extends Activity {
+public class DashboardActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.activity_main);
 
-        ((Springboard)this.findViewById(R.id.springboard)).setAdapter(new SpringboardAdapter(this));
+        ((Dashboard)this.findViewById(R.id.dashboard)).setAdapter(new DashboardAdapter(this));
     }
 }

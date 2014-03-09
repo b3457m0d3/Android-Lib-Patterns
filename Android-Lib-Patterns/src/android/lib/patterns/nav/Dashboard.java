@@ -19,9 +19,9 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
-public class Springboard extends LinearLayout {
+public class Dashboard extends LinearLayout {
     private final ViewPager               pager;
-    private final SpringboardPagerAdapter pagerAdapter;
+    private final DashboardPagerAdapter pagerAdapter;
 
     private final ViewGroup indicatorGroup;
 
@@ -41,64 +41,76 @@ public class Springboard extends LinearLayout {
     private ListAdapter adapter;
 
     /**
-     * Creates a new {@link Springboard}.
+     * Creates a new {@link Dashboard}.
      * @param context An instance of {@link FragmentActivity}.
      * @throws ClassCastException if the given <code>context</code> is not an instance of
      * {@link FragmentActivity}.
      */
-    public Springboard(final Context context) {
+    public Dashboard(final Context context) {
         this(context, null);
     }
 
     /**
-     * Creates a new {@link Springboard}.
+     * Creates a new {@link Dashboard}.
      * @param context An instance of {@link FragmentActivity}.
      * @param attrs
      * @throws ClassCastException if the given <code>context</code> is not an instance of
      * {@link FragmentActivity}.
      */
-    public Springboard(final Context context, final AttributeSet attrs) {
-        super(context, attrs);
+    public Dashboard(final Context context, final AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
 
-        LayoutInflater.from(context).inflate(R.layout.springboard, this, true);
+    /**
+     * Creates a new {@link Dashboard}.
+     * @param context An instance of {@link FragmentActivity}.
+     * @param attrs
+     * @param defStyle
+     * @throws ClassCastException if the given <code>context</code> is not an instance of
+     * {@link FragmentActivity}.
+     */
+    public Dashboard(final Context context, final AttributeSet attrs, final int defStyle) {
+        super(context, attrs, defStyle);
 
-        this.pager          = (ViewPager)this.findViewById(R.id.springboard_pager);
-        this.indicatorGroup = (ViewGroup)this.findViewById(R.id.springboard_page_indicator);
-        this.numColumns     = context.getResources().getInteger(R.integer.springboard_num_columns);
-        this.numRows        = context.getResources().getInteger(R.integer.springboard_num_rows);
-        this.transitionTime = context.getResources().getInteger(R.integer.springboard_page_indicator_transition);
+        LayoutInflater.from(context).inflate(R.layout.dashboard, this, true);
+
+        this.pager          = (ViewPager)this.findViewById(R.id.dashboard_pager);
+        this.indicatorGroup = (ViewGroup)this.findViewById(R.id.dashboard_page_indicator);
+        this.numColumns     = context.getResources().getInteger(R.integer.dashboard_num_columns);
+        this.numRows        = context.getResources().getInteger(R.integer.dashboard_num_rows);
+        this.transitionTime = context.getResources().getInteger(R.integer.dashboard_page_indicator_transition);
 
         if (attrs != null) {
-            final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.Springboard);
+            final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.Dashboard);
 
-            this.numColumns = array.getResourceId(R.styleable.Springboard_numColumns, 0);
+            this.numColumns = array.getResourceId(R.styleable.Dashboard_numColumns, 0);
             if (this.numColumns == 0) {
-                this.numColumns = array.getInteger(R.styleable.Springboard_numColumns, this.numColumns);
+                this.numColumns = array.getInteger(R.styleable.Dashboard_numColumns, this.numColumns);
             }
 
-            this.numRows = array.getResourceId(R.styleable.Springboard_numRows, 0);
+            this.numRows = array.getResourceId(R.styleable.Dashboard_numRows, 0);
             if (this.numRows == 0) {
-                this.numRows = array.getInteger(R.styleable.Springboard_numRows, this.numRows);
+                this.numRows = array.getInteger(R.styleable.Dashboard_numRows, this.numRows);
             }
 
-            int height = array.getResourceId(R.styleable.Springboard_pageIndicatorHeight, 0);
+            int height = array.getResourceId(R.styleable.Dashboard_pageIndicatorHeight, 0);
             if (height == 0) {
-                height = array.getDimensionPixelSize(R.styleable.Springboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.springboard_page_indicator_height));
+                height = array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_height));
             }
             this.setPageIndicatorHeight(height);
 
-            int padding = array.getResourceId(R.styleable.Springboard_pageIndicatorPadding, 0);
+            int padding = array.getResourceId(R.styleable.Dashboard_pageIndicatorPadding, 0);
             if (padding == 0) {
-                padding = array.getDimensionPixelSize(R.styleable.Springboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.springboard_page_indicator_padding));
+                padding = array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_padding));
             }
             this.setPageIndicatorPadding(padding);
 
-            this.drawableResId = array.getResourceId(R.styleable.Springboard_pageIndicatorSrc, 0);
+            this.drawableResId = array.getResourceId(R.styleable.Dashboard_pageIndicatorSrc, 0);
 
             array.recycle();
         }
 
-        this.pagerAdapter = new SpringboardPagerAdapter(context, this.numColumns, this.numRows);
+        this.pagerAdapter = new DashboardPagerAdapter(context, this.numColumns, this.numRows);
 
         this.setOnPageChangeListener(null);
     }
@@ -120,7 +132,7 @@ public class Springboard extends LinearLayout {
     }
 
     /**
-     * Sets the number of columns in the {@link Springboard}.
+     * Sets the number of columns in the {@link Dashboard}.
      * @param numColumns The desired number of columns.
      */
     public void setNumColumns(final int numColumns) {
@@ -132,7 +144,7 @@ public class Springboard extends LinearLayout {
     }
 
     /**
-     * Sets the number of rows in the {@link Springboard}.
+     * Sets the number of rows in the {@link Dashboard}.
      * @param numRows The desired number of rows.
      */
     public void setNumRows(final int numRows) {
@@ -170,7 +182,7 @@ public class Springboard extends LinearLayout {
     }
 
     /**
-     * Sets the height of each page indicator area at the bottom of the {@link Springboard}.
+     * Sets the height of each page indicator area at the bottom of the {@link Dashboard}.
      * @param height The desired height of each page indicator area to set.
      */
     public void setPageIndicatorHeight(final int height) {
@@ -195,7 +207,7 @@ public class Springboard extends LinearLayout {
     }
 
     /**
-     * Registers a callback to be invoked when an item in this {@link Springboard} has been clicked.
+     * Registers a callback to be invoked when an item in this {@link Dashboard} has been clicked.
      * @param listener The callback that will be invoked.
      * @see GridView#OnItemClickListener
      */
@@ -204,7 +216,7 @@ public class Springboard extends LinearLayout {
     }
 
     /**
-     * Registers a callback to be invoked when an item in this {@link Springboard} has been clicked and held.
+     * Registers a callback to be invoked when an item in this {@link Dashboard} has been clicked and held.
      * @param listener The callback that will be invoked.
      * @see GridView#OnItemLongClickListener
      */
@@ -248,7 +260,7 @@ public class Springboard extends LinearLayout {
             if (drawable instanceof TransitionDrawable) {
                 this.drawables[i] = (TransitionDrawable)drawable;
             } else {
-                this.drawables[i] = (TransitionDrawable)this.getContext().getResources().getDrawable(R.drawable.springboard_page_indicator);
+                this.drawables[i] = (TransitionDrawable)this.getContext().getResources().getDrawable(R.drawable.dashboard_page_indicator);
             }
 
             final ImageView imageView = new ImageView(this.getContext());
@@ -282,7 +294,7 @@ public class Springboard extends LinearLayout {
         @Override
         public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
             if (this.listener != null) {
-                this.listener.onItemClick(parent, view, Springboard.this.pagerAdapter.getItemPosition(view) * Springboard.this.numColumns * Springboard.this.numRows + position, id);
+                this.listener.onItemClick(parent, view, Dashboard.this.pagerAdapter.getItemPosition(view) * Dashboard.this.numColumns * Dashboard.this.numRows + position, id);
             }
         }
     }
@@ -297,7 +309,7 @@ public class Springboard extends LinearLayout {
         @Override
         public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
             if (this.listener != null) {
-                return this.listener.onItemLongClick(parent, view, Springboard.this.pagerAdapter.getItemPosition(view) * Springboard.this.numColumns * Springboard.this.numRows + position, id);
+                return this.listener.onItemLongClick(parent, view, Dashboard.this.pagerAdapter.getItemPosition(view) * Dashboard.this.numColumns * Dashboard.this.numRows + position, id);
             }
 
             return false;
@@ -327,9 +339,9 @@ public class Springboard extends LinearLayout {
 
         @Override
         public void onPageSelected(final int position) {
-            Springboard.this.selectPageIndicator(Springboard.this.currentItem, position, Springboard.this.transitionTime);
+            Dashboard.this.selectPageIndicator(Dashboard.this.currentItem, position, Dashboard.this.transitionTime);
 
-            Springboard.this.currentItem = position;
+            Dashboard.this.currentItem = position;
 
             if (this.listener != null) {
                 this.listener.onPageSelected(position);

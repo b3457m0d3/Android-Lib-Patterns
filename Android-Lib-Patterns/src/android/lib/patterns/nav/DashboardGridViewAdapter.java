@@ -5,12 +5,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 
-final class SpringboardGridViewAdapter extends BaseAdapter {
+final class DashboardGridViewAdapter extends BaseAdapter {
     private final ListAdapter adapter;
     private final int         startIndex;
     private final int         count;
 
-    public SpringboardGridViewAdapter(final ListAdapter adapter, final int startIndex, final int count) {
+    public DashboardGridViewAdapter(final ListAdapter adapter, final int startIndex, final int count) {
         this.adapter    = adapter;
         this.startIndex = startIndex;
         this.count      = count;

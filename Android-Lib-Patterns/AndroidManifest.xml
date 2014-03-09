@@ -2,6 +2,6 @@
     package="android.lib.patterns"
     android:versionCode="1"
     android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="3" />
+    <uses-sdk android:minSdkVersion="14" />
     <application />
 </manifest>

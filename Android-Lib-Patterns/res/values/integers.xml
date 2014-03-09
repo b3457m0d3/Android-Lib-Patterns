@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default number of columns. -->
-    <integer name="springboard_num_columns">3</integer>
+    <integer name="dashboard_num_columns">3</integer>
     <!-- Default number of rows. -->
-    <integer name="springboard_num_rows">4</integer>
+    <integer name="dashboard_num_rows">4</integer>
     <!-- State transition time for page indicators -->
-    <integer name="springboard_page_indicator_transition">500</integer>
+    <integer name="dashboard_page_indicator_transition">500</integer>
+    <!-- Default minItemCount -->
+    <integer name="endless_min_item_count">5</integer>
 </resources>

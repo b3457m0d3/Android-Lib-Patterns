@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default padding for page indicator. -->
-    <dimen name="springboard_page_indicator_padding">4dp</dimen>
+    <dimen name="dashboard_page_indicator_padding">4dp</dimen>
     <!-- Default height of page indicator. -->
-    <dimen name="springboard_page_indicator_height">32dp</dimen>
+    <dimen name="dashboard_page_indicator_height">32dp</dimen>
 </resources>

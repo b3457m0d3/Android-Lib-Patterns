@@ -3,13 +3,13 @@
     package="android.lib.patterns.demo"
     android:versionCode="1"
     android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="5" />
+    <uses-sdk android:minSdkVersion="14" />
     <application
         android:label="@string/app_name"
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/android:Theme.Light">
         <activity
-            android:name=".SpringboardActivity"
+            android:name=".DashboardActivity"
             android:label="@string/springboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

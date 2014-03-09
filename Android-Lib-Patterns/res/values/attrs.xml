@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Springboard">
+    <declare-styleable name="Dashboard">
         <!-- Defines how many columns to show. -->
         <attr
             name="numColumns"
@@ -21,5 +21,23 @@
         <attr
             name="pageIndicatorHeight"
             format="reference|dimension" />
+    </declare-styleable>
+    <declare-styleable name="EndlessListView">
+        <!-- Defines the minimum number of items in the ListView that have not been loaded before loading more items -->
+        <attr
+            name="minItemCount"
+            format="reference|integer" />
+        <!-- Defines the View that will be visible when the ListView is loading more items -->
+        <attr
+            name="endlessView"
+            format="reference" />
+        <!-- Defines the Animation to apply to the endless View when the ListView starts loading more items -->
+        <attr
+            name="startAnimation"
+            format="reference" />
+        <!-- Defines the Animation to apply to the endless View when the ListView finishes loading more items -->
+        <attr
+            name="endAnimation"
+            format="reference" />
     </declare-styleable>
 </resources>

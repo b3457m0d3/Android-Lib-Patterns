@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
-final class SpringboardPagerAdapter extends PagerAdapter {
+final class DashboardPagerAdapter extends PagerAdapter {
     private final Context context;
 
     private int numColumns;
@@ -22,7 +22,7 @@ final class SpringboardPagerAdapter extends PagerAdapter {
     private GridView.OnItemClickListener     onItemClickListener;
     private GridView.OnItemLongClickListener onItemLongClickListener;
 
-    public SpringboardPagerAdapter(final Context context, final int numColumns, final int numRows) {
+    public DashboardPagerAdapter(final Context context, final int numColumns, final int numRows) {
         this.context    = context;
         this.numColumns = numColumns;
         this.numRows    = numRows;
@@ -57,7 +57,7 @@ final class SpringboardPagerAdapter extends PagerAdapter {
             return null;
         }
 
-        this.gridViews[position] = (GridView)LayoutInflater.from(this.context).inflate(R.layout.springboard_gridview, null);
+        this.gridViews[position] = (GridView)LayoutInflater.from(this.context).inflate(R.layout.dashboard_gridview, null);
 
         this.gridViews[position].setNumColumns(this.numColumns);
         this.gridViews[position].setAdapter(this.adapters[position]);
@@ -84,7 +84,7 @@ final class SpringboardPagerAdapter extends PagerAdapter {
         this.gridViews = new GridView[pageCount];
 
         for (int i = 0; i < pageCount; i++) {
-            this.adapters[i] = new SpringboardGridViewAdapter(adapter, i * itemCount, itemCount);
+            this.adapters[i] = new DashboardGridViewAdapter(adapter, i * itemCount, itemCount);
         }
 
         this.adapter = adapter;
