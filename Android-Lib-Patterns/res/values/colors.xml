@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default color of selected page indicator. -->
-    <color name="dashboard_page_indicator_selected">#0099cc</color>
+    <color name="dashboard_page_indicator_selected">#eee</color>
     <!-- Default color of normal page indicator. -->
-    <color name="dashboard_page_indicator_normal">#e2f4fb</color>
+    <color name="dashboard_page_indicator_normal">#666</color>
 </resources>

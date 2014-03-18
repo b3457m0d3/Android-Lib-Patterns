@@ -64,7 +64,7 @@ public class EndlessListView extends ListView {
                 if (minItemCountId == 0) {
                     this.minItemCount = context.getResources().getInteger(minItemCountId);
                 } else {
-                    this.minItemCount = context.getResources().getInteger(minItemCountId);
+                    this.minItemCount = array.getInteger(minItemCountId, context.getResources().getInteger(R.integer.endless_min_item_count));
                 }
             } else {
                 this.minItemCount = context.getResources().getInteger(R.integer.endless_min_item_count);

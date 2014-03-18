@@ -88,6 +88,9 @@ final class DashboardPagerAdapter extends PagerAdapter {
         }
 
         this.adapter = adapter;
+
+        this.setOnItemClickListener(this.onItemClickListener);
+        this.setOnItemLongClickListener(this.onItemLongClickListener);
     }
 
     protected void setNumColumns(final int numColumns) {
@@ -109,17 +112,24 @@ final class DashboardPagerAdapter extends PagerAdapter {
     protected void setOnItemClickListener(final GridView.OnItemClickListener listener) {
         this.onItemClickListener = listener;
 
-        for (final GridView gridView : this.gridViews) {
-            gridView.setOnItemClickListener(listener);
+        if (this.adapter != null) {
+            for (final GridView gridView : this.gridViews) {
+                if (gridView != null) {
+                    gridView.setOnItemClickListener(listener);
+                }
+            }
         }
     }
 
     protected void setOnItemLongClickListener(final GridView.OnItemLongClickListener listener) {
         this.onItemLongClickListener = listener;
 
-        for (final GridView gridView : this.gridViews) {
-            gridView.setOnItemLongClickListener(listener);
+        if (this.adapter != null) {
+            for (final GridView gridView : this.gridViews) {
+                if (gridView != null) {
+                    gridView.setOnItemLongClickListener(listener);
+                }
+            }
         }
     }
-
 }

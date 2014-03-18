@@ -2,4 +2,6 @@
 <GridView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:horizontalSpacing="@dimen/dashboard_grid_spacing_horizontal"
+    android:verticalSpacing="@dimen/dashboard_grid_spacing_vertical"
     android:stretchMode="columnWidth" />

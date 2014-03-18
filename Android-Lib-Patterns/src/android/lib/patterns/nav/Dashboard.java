@@ -84,25 +84,17 @@ public class Dashboard extends LinearLayout {
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.Dashboard);
 
             this.numColumns = array.getResourceId(R.styleable.Dashboard_numColumns, 0);
-            if (this.numColumns == 0) {
-                this.numColumns = array.getInteger(R.styleable.Dashboard_numColumns, this.numColumns);
-            }
+            this.numColumns = this.numColumns == 0 ? array.getInteger(R.styleable.Dashboard_numColumns, this.numColumns) : context.getResources().getInteger(this.numColumns);
 
             this.numRows = array.getResourceId(R.styleable.Dashboard_numRows, 0);
-            if (this.numRows == 0) {
-                this.numRows = array.getInteger(R.styleable.Dashboard_numRows, this.numRows);
-            }
+            this.numRows = this.numRows == 0 ? array.getInteger(R.styleable.Dashboard_numRows, this.numRows) : context.getResources().getInteger(this.numRows);
 
             int height = array.getResourceId(R.styleable.Dashboard_pageIndicatorHeight, 0);
-            if (height == 0) {
-                height = array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_height));
-            }
+            height = height == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_height)) : context.getResources().getDimensionPixelSize(height);
             this.setPageIndicatorHeight(height);
 
             int padding = array.getResourceId(R.styleable.Dashboard_pageIndicatorPadding, 0);
-            if (padding == 0) {
-                padding = array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_padding));
-            }
+            padding = padding == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_padding)) : context.getResources().getDimensionPixelSize(padding);
             this.setPageIndicatorPadding(padding);
 
             this.drawableResId = array.getResourceId(R.styleable.Dashboard_pageIndicatorSrc, 0);

@@ -18,8 +18,10 @@ final class DashboardGridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (this.adapter.getCount() > this.startIndex) {
-            return Math.min(this.adapter.getCount() - this.startIndex, this.count);
+        final int count = this.adapter.getCount();
+
+        if (count > this.startIndex) {
+            return Math.min(count - this.startIndex, this.count);
         }
 
         return 0;
