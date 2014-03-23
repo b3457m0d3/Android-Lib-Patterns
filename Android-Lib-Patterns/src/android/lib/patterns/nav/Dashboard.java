@@ -2,38 +2,24 @@ package android.lib.patterns.nav;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.lib.patterns.R;
+import android.lib.patterns.widget.PageIndicator;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
 public class Dashboard extends LinearLayout {
-    private final ViewPager               pager;
+    private final ViewPager             pager;
     private final DashboardPagerAdapter pagerAdapter;
 
-    private final ViewGroup indicatorGroup;
-
-    private final int transitionTime;
-
-    private int height;
-    private int padding;
-
-    private int                  drawableResId;
-    private TransitionDrawable[] drawables;
-
-    private int currentItem;
+    private final PageIndicator indicator;
 
     private int numColumns;
     private int numRows;
@@ -74,11 +60,10 @@ public class Dashboard extends LinearLayout {
 
         LayoutInflater.from(context).inflate(R.layout.dashboard, this, true);
 
-        this.pager          = (ViewPager)this.findViewById(R.id.dashboard_pager);
-        this.indicatorGroup = (ViewGroup)this.findViewById(R.id.dashboard_page_indicator);
-        this.numColumns     = context.getResources().getInteger(R.integer.dashboard_num_columns);
-        this.numRows        = context.getResources().getInteger(R.integer.dashboard_num_rows);
-        this.transitionTime = context.getResources().getInteger(R.integer.dashboard_page_indicator_transition);
+        this.pager      = (ViewPager)this.findViewById(R.id.pager);
+        this.indicator  = (PageIndicator)this.findViewById(R.id.page_indicator);
+        this.numColumns = context.getResources().getInteger(R.integer.dashboard_num_columns);
+        this.numRows    = context.getResources().getInteger(R.integer.dashboard_num_rows);
 
         if (attrs != null) {
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.Dashboard);
@@ -90,14 +75,27 @@ public class Dashboard extends LinearLayout {
             this.numRows = this.numRows == 0 ? array.getInteger(R.styleable.Dashboard_numRows, this.numRows) : context.getResources().getInteger(this.numRows);
 
             int height = array.getResourceId(R.styleable.Dashboard_pageIndicatorHeight, 0);
+<<<<<<< HEAD
             height = height == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_height)) : context.getResources().getDimensionPixelSize(height);
             this.setPageIndicatorHeight(height);
 
             int padding = array.getResourceId(R.styleable.Dashboard_pageIndicatorPadding, 0);
             padding = padding == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_padding)) : context.getResources().getDimensionPixelSize(padding);
             this.setPageIndicatorPadding(padding);
+=======
+            height = height == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.page_indicator_height)) : context.getResources().getDimensionPixelSize(height);
 
-            this.drawableResId = array.getResourceId(R.styleable.Dashboard_pageIndicatorSrc, 0);
+            final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, height);
+            params.gravity = Gravity.CENTER_HORIZONTAL;
+            params.weight  = 0;
+            this.indicator.setLayoutParams(params);
+
+            int padding = array.getResourceId(R.styleable.Dashboard_pageIndicatorPadding, 0);
+            padding = padding == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.page_indicator_margin)) : context.getResources().getDimensionPixelSize(padding);
+            this.indicator.setIndicatorMargin(padding);
+>>>>>>> Add Wizard pattern, PageIndicator pattern
+
+            this.indicator.setIndicatorResource(array.getResourceId(R.styleable.Dashboard_pageIndicatorSrc, R.drawable.page_indicator));
 
             array.recycle();
         }
@@ -120,7 +118,7 @@ public class Dashboard extends LinearLayout {
 
         this.adapter = adapter;
 
-        this.createPageIndicators();
+        this.indicator.setPageCount((this.adapter.getCount() + this.numColumns * this.numRows - 1) / (this.numColumns * this.numRows));
     }
 
     /**
@@ -132,7 +130,7 @@ public class Dashboard extends LinearLayout {
 
         this.numColumns = numColumns;
 
-        this.createPageIndicators();
+        this.indicator.setPageCount((this.adapter.getCount() + this.numColumns * this.numRows - 1) / (this.numColumns * this.numRows));
     }
 
     /**
@@ -144,7 +142,7 @@ public class Dashboard extends LinearLayout {
 
         this.numRows = numRows;
 
-        this.createPageIndicators();
+        this.indicator.setPageCount((this.adapter.getCount() + this.numColumns * this.numRows - 1) / (this.numColumns * this.numRows));
     }
 
     /**
@@ -154,9 +152,7 @@ public class Dashboard extends LinearLayout {
     public void setCurrentItem(final int item) {
         this.pager.setCurrentItem(item);
 
-        this.selectPageIndicator(this.currentItem, item, 1);
-
-        this.currentItem = item;
+        this.indicator.setCurrentItem(item);
     }
 
     /**
@@ -168,34 +164,7 @@ public class Dashboard extends LinearLayout {
     public void setCurrentItem(final int item, final boolean smoothScroll) {
         this.pager.setCurrentItem(item, smoothScroll);
 
-        this.selectPageIndicator(this.currentItem, item, this.transitionTime);
-
-        this.currentItem = item;
-    }
-
-    /**
-     * Sets the height of each page indicator area at the bottom of the {@link Dashboard}.
-     * @param height The desired height of each page indicator area to set.
-     */
-    public void setPageIndicatorHeight(final int height) {
-        this.height = height;
-
-        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, this.height, 0);
-        params.gravity = Gravity.CENTER_HORIZONTAL;
-
-        this.indicatorGroup.setLayoutParams(params);
-    }
-
-    /**
-     * Sets the padding of each page indicator image.
-     * @param padding The desired padding of each page indicator to set.
-     */
-    public void setPageIndicatorPadding(final int padding) {
-        this.padding = padding;
-
-        for (int i = 0; i < this.indicatorGroup.getChildCount(); i++) {
-            this.indicatorGroup.getChildAt(i).setPadding(this.padding, this.padding, this.padding, this.padding);
-        }
+        this.indicator.setCurrentItem(item);
     }
 
     /**
@@ -239,41 +208,8 @@ public class Dashboard extends LinearLayout {
         this.pager.setPageTransformer(reverseDrawingOrder, transformer);
     }
 
-    private void createPageIndicators() {
-        this.indicatorGroup.removeAllViews();
-
-        final int pageCount = (this.adapter.getCount() + this.numColumns * this.numRows - 1) / (this.numColumns * this.numRows);
-
-        this.drawables = new TransitionDrawable[pageCount];
-
-        for (int i = 0; i < pageCount; i++) {
-            final Drawable drawable = this.getContext().getResources().getDrawable(this.drawableResId);
-
-            if (drawable instanceof TransitionDrawable) {
-                this.drawables[i] = (TransitionDrawable)drawable;
-            } else {
-                this.drawables[i] = (TransitionDrawable)this.getContext().getResources().getDrawable(R.drawable.dashboard_page_indicator);
-            }
-
-            final ImageView imageView = new ImageView(this.getContext());
-            imageView.setImageDrawable(this.drawables[i]);
-            imageView.setScaleType(ScaleType.CENTER_INSIDE);
-            imageView.setPadding(this.padding, this.padding, this.padding, this.padding);
-
-            this.indicatorGroup.addView(imageView, new LinearLayout.LayoutParams(this.height, ViewGroup.LayoutParams.FILL_PARENT, 1));
-        }
-
-        this.selectPageIndicator(0, -1, this.transitionTime);
-    }
-
-    private void selectPageIndicator(final int oldIndex, final int newIndex, final int transitionTime) {
-        if (newIndex >= 0) {
-            this.drawables[newIndex].startTransition(transitionTime);
-        }
-
-        if (oldIndex >= 0) {
-            this.drawables[oldIndex].reverseTransition(transitionTime);
-        }
+    public PageIndicator getPageIndicator() {
+        return this.indicator;
     }
 
     private final class OnItemClickListener implements GridView.OnItemClickListener {
@@ -286,7 +222,7 @@ public class Dashboard extends LinearLayout {
         @Override
         public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
             if (this.listener != null) {
-                this.listener.onItemClick(parent, view, Dashboard.this.pagerAdapter.getItemPosition(view) * Dashboard.this.numColumns * Dashboard.this.numRows + position, id);
+                this.listener.onItemClick(parent, view, Dashboard.this.pager.getCurrentItem() * Dashboard.this.numColumns * Dashboard.this.numRows + position, id);
             }
         }
     }
@@ -331,9 +267,7 @@ public class Dashboard extends LinearLayout {
 
         @Override
         public void onPageSelected(final int position) {
-            Dashboard.this.selectPageIndicator(Dashboard.this.currentItem, position, Dashboard.this.transitionTime);
-
-            Dashboard.this.currentItem = position;
+            Dashboard.this.indicator.setCurrentItem(position);
 
             if (this.listener != null) {
                 this.listener.onPageSelected(position);

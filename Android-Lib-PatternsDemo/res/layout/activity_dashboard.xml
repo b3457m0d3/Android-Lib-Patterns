@@ -8,4 +8,4 @@
     android:layout_height="fill_parent"
     patterns:numColumns="3"
     patterns:numRows="4"
-    patterns:pageIndicatorSrc="@drawable/dashboard_page_indicator" />
+    patterns:pageIndicatorSrc="@drawable/page_indicator" />

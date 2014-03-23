@@ -5,7 +5,7 @@
     <!-- Default number of rows. -->
     <integer name="dashboard_num_rows">4</integer>
     <!-- State transition time for page indicators -->
-    <integer name="dashboard_page_indicator_transition">500</integer>
+    <integer name="page_indicator_transition">500</integer>
     <!-- Default minItemCount -->
     <integer name="endless_min_item_count">5</integer>
 </resources>

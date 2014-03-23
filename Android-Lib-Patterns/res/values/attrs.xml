@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Defines a TransitionDrawable as the page indicator. -->
+    <attr
+        name="pageIndicatorSrc"
+        format="reference" />
+    <!-- Defines the padding for the page indicator -->
+    <attr
+        name="pageIndicatorPadding"
+        format="reference|dimension" />
+    <!-- Defines the height of the page indicator. -->
+    <attr
+        name="pageIndicatorHeight"
+        format="reference|dimension" />
+    <declare-styleable name="PageIndicator">
+        <!-- Defines a TransitionDrawable as the page indicator. -->
+        <attr
+            name="indicatorSrc"
+            format="reference" />
+        <!-- Defines the margin for the page indicator -->
+        <attr
+            name="indicatorMargin"
+            format="reference|dimension" />
+    </declare-styleable>
     <declare-styleable name="Dashboard">
         <!-- Defines how many columns to show. -->
         <attr
@@ -9,18 +31,9 @@
         <attr
             name="numRows"
             format="reference|integer" />
-        <!-- Defines a TransitionDrawable as the page indicator. -->
-        <attr
-            name="pageIndicatorSrc"
-            format="reference" />
-        <!-- Defines the padding for the page indicator -->
-        <attr
-            name="pageIndicatorPadding"
-            format="reference|dimension" />
-        <!-- Defines the height of the page indicator. -->
-        <attr
-            name="pageIndicatorHeight"
-            format="reference|dimension" />
+        <attr name="pageIndicatorSrc" />
+        <attr name="pageIndicatorPadding" />
+        <attr name="pageIndicatorHeight" />
     </declare-styleable>
     <declare-styleable name="EndlessListView">
         <!-- Defines the minimum number of items in the ListView that have not been loaded before loading more items -->
@@ -39,5 +52,10 @@
         <attr
             name="endAnimation"
             format="reference" />
+    </declare-styleable>
+    <declare-styleable name="Wizard">
+        <attr name="pageIndicatorSrc" />
+        <attr name="pageIndicatorPadding" />
+        <attr name="pageIndicatorHeight" />
     </declare-styleable>
 </resources>

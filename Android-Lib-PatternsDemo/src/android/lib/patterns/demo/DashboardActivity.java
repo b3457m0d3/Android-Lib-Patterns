@@ -9,7 +9,7 @@ public class DashboardActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_dashboard);
 
         ((Dashboard)this.findViewById(R.id.dashboard)).setAdapter(new DashboardAdapter(this));
     }

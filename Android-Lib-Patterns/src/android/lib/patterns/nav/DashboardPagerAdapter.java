@@ -72,7 +72,7 @@ final class DashboardPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(final ViewGroup container, final int position, final Object object) {
         if (container != null) {
-            container.removeView(this.gridViews[position]);
+            container.removeView((View)object);
         }
     }
 

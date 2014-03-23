@@ -7,14 +7,22 @@
     <application
         android:label="@string/app_name"
         android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/android:Theme.Light">
+        android:theme="@android:style/android:Theme.Holo">
         <activity
-            android:name=".DashboardActivity"
-            android:label="@string/springboard">
+            android:name=".MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/springboard"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+        <activity
+            android:name=".WizardActivity"
+            android:label="@string/wizard"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
     </application>
 </manifest>

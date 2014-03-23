@@ -2,4 +2,11 @@
 <resources>
     <string name="app_name">Android Patterns Demo</string>
     <string name="springboard">Springboard Demo</string>
+    <string name="wizard">Wizard Demo</string>
+    <string name="endless_listview">Endless ListView Demo</string>
+    <string-array name="demos">
+        <item>Dashboard Demo</item>
+        <item>Wizard Demo</item>
+        <item>Endless ListView Demo</item>
+    </string-array>
 </resources>
