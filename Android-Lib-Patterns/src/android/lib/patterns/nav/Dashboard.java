@@ -75,14 +75,6 @@ public class Dashboard extends LinearLayout {
             this.numRows = this.numRows == 0 ? array.getInteger(R.styleable.Dashboard_numRows, this.numRows) : context.getResources().getInteger(this.numRows);
 
             int height = array.getResourceId(R.styleable.Dashboard_pageIndicatorHeight, 0);
-<<<<<<< HEAD
-            height = height == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_height)) : context.getResources().getDimensionPixelSize(height);
-            this.setPageIndicatorHeight(height);
-
-            int padding = array.getResourceId(R.styleable.Dashboard_pageIndicatorPadding, 0);
-            padding = padding == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.dashboard_page_indicator_padding)) : context.getResources().getDimensionPixelSize(padding);
-            this.setPageIndicatorPadding(padding);
-=======
             height = height == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorHeight, context.getResources().getDimensionPixelSize(R.dimen.page_indicator_height)) : context.getResources().getDimensionPixelSize(height);
 
             final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, height);
@@ -93,7 +85,6 @@ public class Dashboard extends LinearLayout {
             int padding = array.getResourceId(R.styleable.Dashboard_pageIndicatorPadding, 0);
             padding = padding == 0 ? array.getDimensionPixelSize(R.styleable.Dashboard_pageIndicatorPadding, context.getResources().getDimensionPixelSize(R.dimen.page_indicator_margin)) : context.getResources().getDimensionPixelSize(padding);
             this.indicator.setIndicatorMargin(padding);
->>>>>>> Add Wizard pattern, PageIndicator pattern
 
             this.indicator.setIndicatorResource(array.getResourceId(R.styleable.Dashboard_pageIndicatorSrc, R.drawable.page_indicator));
 
